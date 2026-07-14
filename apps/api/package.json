@@ -1,0 +1,24 @@
+{
+  "name": "@limbus/api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "build": "wrangler deploy --dry-run --outdir dist",
+    "check": "wrangler types && tsc -p tsconfig.json",
+    "test": "vitest run",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "@limbus/contracts": "workspace:*",
+    "@sinclair/typebox": "0.34.52",
+    "elysia": "1.4.29"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "0.18.4",
+    "@types/node": "latest",
+    "vitest": "4.1.10",
+    "wrangler": "4.110.0"
+  }
+}
