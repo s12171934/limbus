@@ -1,9 +1,10 @@
 import type { Deck, DeckInput, DeckSummary } from "@limbus/contracts";
 
 const userId = "local-demo-user"; // 인증 도입 전 개발용 식별자
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, "") ?? "";
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
-  const response = await fetch(`/api${path}`, {
+  const response = await fetch(`${apiBaseUrl}/api${path}`, {
     ...init,
     headers: { "content-type": "application/json", "x-user-id": userId, ...init?.headers },
   });
