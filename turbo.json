@@ -3,6 +3,7 @@
   "ui": "tui",
   "tasks": {
     "build": { "dependsOn": ["^build"], "outputs": ["dist/**"] },
+    "@limbus/contracts#build": { "outputs": [] },
     "dev": { "cache": false, "persistent": true },
     "check": { "dependsOn": ["^check"] },
     "test": { "dependsOn": ["^build"], "outputs": ["coverage/**"] },

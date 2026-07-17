@@ -62,6 +62,26 @@ bun run --cwd apps/web build
 bun run --cwd apps/web deploy
 ```
 
+루트에서 한 번에 배포하려면 다음 명령을 사용합니다.
+
+```bash
+bun run deploy
+```
+
+GitHub Actions 배포는 `.github/workflows/deploy.yml`에서 `main` 브랜치 push 또는 수동 실행 시 동작합니다. GitHub 저장소의 `Settings > Secrets and variables > Actions`에 다음 Secrets를 등록해야 합니다.
+
+- `CLOUDFLARE_ACCOUNT_ID`
+- `CLOUDFLARE_API_TOKEN`
+
+다음 Variables도 등록해야 합니다.
+
+- `CLOUDFLARE_PAGES_PROJECT_NAME`
+- `VITE_API_BASE_URL`
+
+Cloudflare의 자체 Git 배포를 사용하지 않을 경우 Workers/Pages 프로젝트의 자동 배포 연결을 끄고, GitHub Actions만 배포 권한을 갖도록 운영합니다. Cloudflare API Token은 Workers와 Pages 배포가 가능한 권한으로 생성해야 합니다.
+
+Cloudflare Workers Git 빌드를 계속 쓸 경우 루트 디렉터리를 저장소 루트로 두고 빌드 명령 `bun run build`, 배포 명령 `bun run deploy:api`를 사용합니다. `npx wrangler deploy`는 모노레포 루트에서 실행되어 앱 위치를 찾지 못하므로 사용하지 않습니다.
+
 Cloudflare Pages Git 빌드는 루트 디렉터리를 저장소 루트로 두고 빌드 명령 `bun run --cwd apps/web build`, 출력 디렉터리 `apps/web/dist`를 사용합니다. Production branch는 `main`입니다.
 
 ## 인증 관련 주의

@@ -16,11 +16,14 @@
     "quality": "biome check .",
     "quality:fix": "biome check --write .",
     "test": "turbo test",
-    "deploy": "turbo deploy"
+    "deploy": "bun run deploy:api && bun run deploy:web",
+    "deploy:api": "bun run --cwd apps/api deploy",
+    "deploy:web": "bun run --cwd apps/web deploy"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.3",
     "turbo": "2.10.5",
-    "typescript": "7.0.2"
+    "typescript": "7.0.2",
+    "wrangler": "4.110.0"
   }
 }
