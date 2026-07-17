@@ -19,5 +19,12 @@ export const deckApi = {
     request<Deck>("/decks", { method: "POST", body: JSON.stringify(input) }),
   update: (id: string, input: DeckInput) =>
     request<Deck>(`/decks/${id}`, { method: "PUT", body: JSON.stringify(input) }),
-  remove: (id: string) => request<void>(`/decks/${id}`, { method: "DELETE" }),
+  remove: async (id: string) => {
+    try {
+      await request<void>(`/decks/${id}`, { method: "DELETE" });
+    } catch (error) {
+      if (error instanceof Error && error.message.includes("(404)")) return;
+      throw error;
+    }
+  },
 };
