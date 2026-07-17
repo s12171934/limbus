@@ -9,7 +9,7 @@
   },
   "migrations": [{ "tag": "v1", "new_sqlite_classes": ["UserDecks"] }],
   "r2_buckets": [{ "binding": "DECKS", "bucket_name": "limbus-decks" }],
-  "vars": { "ALLOWED_ORIGIN": "https://limbus-deck.pages.dev" },
+  "vars": { "ALLOWED_ORIGIN": "*" },
   "observability": {
     "enabled": true,
     "logs": { "head_sampling_rate": 1 },
