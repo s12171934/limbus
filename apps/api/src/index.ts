@@ -54,10 +54,7 @@ function api(env: Env) {
       return deck;
     })
     .delete("/decks/:id", async ({ decks, userId, params, set }) => {
-      if (!(await decks.remove(userId, params.id))) {
-        set.status = 404;
-        return error("NOT_FOUND", "Deck not found");
-      }
+      await decks.remove(userId, params.id);
       return new Response(null, { status: 204, headers: corsHeaders(env.ALLOWED_ORIGIN) });
     })
     .onError(({ error: cause, code, set }) => {
